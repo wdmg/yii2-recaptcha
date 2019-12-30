@@ -6,7 +6,7 @@ namespace wdmg\validators;
  * Yii2 ReCaptcha
  *
  * @category        Validators
- * @version         1.0.0
+ * @version         1.0.1
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-recaptcha
  * @copyright       Copyright (c) 2019 W.D.M.Group, Ukraine
@@ -24,8 +24,8 @@ use yii\httpclient\Client;
 class ReCaptchaValidator extends Validator
 {
 
-    public $secretKey = '_your_secret_key_'; // Your private secret key for verification
-    public $verifyURL = 'https://www.google.com/recaptcha/api/siteverify'; // URL for reCaptcha token validation (or use alternative URL if necessary 'https://www.recaptcha.net/recaptcha/api/siteverify')
+    public $secretKey; // Your private secret key for verification
+    public $verifyURL; // URL for reCaptcha token validation ('https://www.google.com/recaptcha/api/siteverify' or use alternative URL if necessary 'https://www.recaptcha.net/recaptcha/api/siteverify')
     public $checkHost = true; // Check the host when verify error`s
     public $skipOnEmpty = false;
     public $message = 'Please confirm that you are not a robot.';
@@ -37,6 +37,12 @@ class ReCaptchaValidator extends Validator
      */
     public function init() {
         parent::init();
+
+        if (!$this->secretKey && isset(Yii::$app->params["recaptcha.secretKey"]))
+            $this->secretKey = Yii::$app->params["recaptcha.secretKey"];
+
+        if (!$this->verifyURL && isset(Yii::$app->params["recaptcha.verifyURL"]))
+            $this->verifyURL = Yii::$app->params["recaptcha.verifyURL"];
 
         if (!$this->secretKey)
             throw new InvalidConfigException("Required validator param `secretKey` isn't set.");

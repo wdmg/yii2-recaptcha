@@ -6,7 +6,7 @@ namespace wdmg\widgets;
  * Yii2 ReCaptcha
  *
  * @category        Widgets
- * @version         1.0.0
+ * @version         1.0.1
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-recaptcha
  * @copyright       Copyright (c) 2019 W.D.M.Group, Ukraine
@@ -23,8 +23,8 @@ use yii\base\InvalidConfigException;
 class ReCaptcha extends InputWidget
 {
     public $language = 'en'; // see https://developers.google.com/recaptcha/docs/language
-    public $siteKey = '_your_site_key_'; // Your public sitekey
-    public $apiURL = '//www.google.com/recaptcha/api.js'; // The URL for reCaptcha API (or use alternative URL if necessary '//www.recaptcha.net/recaptcha/api.js')
+    public $siteKey; // Your public sitekey
+    public $apiURL; // The URL for reCaptcha API ('//www.google.com/recaptcha/api.js' or use alternative URL if necessary '//www.recaptcha.net/recaptcha/api.js')
 
     // Javascript callback`s for reCaptcha events
     public $callbacks = [
@@ -53,6 +53,12 @@ class ReCaptcha extends InputWidget
     public function init()
     {
         parent::init();
+
+        if (!$this->siteKey && isset(Yii::$app->params["recaptcha.siteKey"]))
+            $this->siteKey = Yii::$app->params["recaptcha.siteKey"];
+
+        if (!$this->apiURL && isset(Yii::$app->params["recaptcha.apiURL"]))
+            $this->apiURL = Yii::$app->params["recaptcha.apiURL"];
 
         if (!$this->siteKey)
             throw new InvalidConfigException("Required widget param `siteKey` isn't set.");

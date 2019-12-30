@@ -72,7 +72,7 @@ And add in your model validation rules:
 |:------------- | ------- |:------------------------- |:---------------------- |
 | language      | string  | `en`        | See https://developers.google.com/recaptcha/docs/language. |
 | siteKey       | string  | null        | Your public sitekey. |
-| apiURL        | string  | `//www.google.com/recaptcha/api.js` | The URL for reCaptcha API (or use alternative URL if necessary '//www.recaptcha.net/recaptcha/api.js').|
+| apiURL        | string  | null        | The URL for reCaptcha API (`//www.google.com/recaptcha/api.js` or use alternative URL if necessary '//www.recaptcha.net/recaptcha/api.js').|
 | callbacks     | array   | []          | Javascript callback`s for reCaptcha events. |
 | render        | string  | `explicit`  | Optional. Whether to render the widget explicitly. Defaults to onload, which will render the widget in the first g-recaptcha tag it finds..  |
 | theme         | string  | `light`     | Optional. The color theme of the widget |
@@ -84,7 +84,11 @@ And add in your model validation rules:
 | options       | array   | []          | Default input options. |
 | widgetOptions | array   | []          | Default widget options. |
 
+> You can use the application parameters in config or in bootstrap, like `Yii::$app->params("recaptcha.siteKey") = "***"` to store the public and private key, as well as the URL to request the API and verify.
+Currently, the widget and validator polls the following parameters: `recaptcha.siteKey`, `recaptcha.apiURL`, `recaptcha.secretKey`, `recaptcha.verifyURL`
+
 > This widget supports Google reCaptcha v2 in a normal and invisible way. Support for v3 is planned.
 
 # Status and version
+* v.1.0.1 - Added support for `siteKey`, `apiURL`, `secretKey`, `verifyURL` from application params.
 * v.1.0.0 - First release. Added widget and validator.
