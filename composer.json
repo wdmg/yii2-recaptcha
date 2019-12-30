@@ -1,0 +1,38 @@
+{
+  "name": "wdmg/yii2-recaptcha",
+  "description": "Google ReCaptcha widget for Yii2",
+  "keywords": ["yii", "yii2", "extension", "recaptcha", "captcha", "bootstrap", "widget", "wdmg"],
+  "type": "yii2-extension",
+  "license": "MIT",
+  "version": "1.0.0",
+  "homepage": "https://github.com/wdmg/yii2-recaptcha",
+  "support": {
+    "source": "https://github.com/wdmg/yii2-recaptcha",
+    "issues": "https://github.com/wdmg/yii2-recaptcha/issues"
+  },
+  "authors": [
+    {
+      "name": "Alexsander Vyshnyvetskyy",
+      "email": "alex.vyshnyvetskyy@gmail.com"
+    },
+    {
+      "name": "W.D.M.Group, Ukraine",
+      "email": "wdmg.com.ua@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "^2.0.20"
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "wdmg\\widgets\\": "src/widgets",
+      "wdmg\\validators\\": "src/validators"
+    }
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "bower-asset-library": "vendor/bower"
+    }
+  }
+}
