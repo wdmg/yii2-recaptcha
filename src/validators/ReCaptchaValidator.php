@@ -59,9 +59,11 @@ class ReCaptchaValidator extends Validator
      * @throws Exception
      */
     protected function validateValue($value) {
+
         $isValid = false;
         if (is_null($value) || empty($value)) {
             $isValid = false;
+            Yii::debug('Transferred token in null or empty', __METHOD__);
         } else {
             $response = $this->verifyCaptcha($value);
             if (!isset($response['success']) && isset($response['hostname'])) {
@@ -69,10 +71,13 @@ class ReCaptchaValidator extends Validator
                     throw new Exception('Invalid reCaptcha verify response.');
                 }
             }
-
-            if ($response['success'] === true)
+            if ($response['success'] === true) {
                 $isValid = true;
-
+            } else {
+                if (isset($response['error-codes'])) {
+                    Yii::debug($response['error-codes'], __METHOD__);
+                }
+            }
         }
 
         // Flip the value where `null` should mean no validation errors
