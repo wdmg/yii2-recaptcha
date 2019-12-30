@@ -165,8 +165,12 @@ class ReCaptcha extends InputWidget
         }
 
         // Set the correct link for label
-        if ($label = $this->field->labelOptions) {
-            $label['for'] = $this->getWidgetId();
+        if ($this->size == 'invisible') {
+            $this->field->label(false);
+        } else {
+            if ($label = $this->field->labelOptions) {
+                $label['for'] = $this->getWidgetId();
+            }
         }
 
         // Assign the widget ID
@@ -263,6 +267,12 @@ function reCaptchaInit() {
                     else
                         jQuery("#" + recaptcha.data("input-id")).val(response).trigger("change");
                     
+                    if (recaptcha.data("size") == 'invisible') {
+                        if (recaptcha.data("form-id")) {
+                            jQuery("#" + recaptcha.data("form-id")).submit();
+                        }
+                    }
+                    
                     if (recaptcha.data("callback"))
                         eval("(" + recaptcha.data("callback") + ")(response)");
                     
@@ -286,12 +296,25 @@ function reCaptchaInit() {
                         jQuery("#" + recaptcha.data("input-id")).val("");
                     
                     if (recaptcha.data("error-callback"))
-                        eval("(" + recaptcha.data("error-callback") + ")()");
+                        eval(recaptcha.data("error-callback"));
                     
                 },
                 "isolated": {$this->isolated}
             });
+            
             recaptcha.data("recaptcha-client-id", clientId);
+            if (recaptcha.data("size") == 'invisible') {
+                const form = jQuery("#" + recaptcha.data("form-id"));
+                form.find('[type="submit"]').on("click", function(event) {
+                    event.preventDefault();
+                    if (grecaptcha.getResponse()) {
+                        form.submit();
+                    } else {
+                        grecaptcha.reset();
+                        grecaptcha.execute();
+                    }
+                });
+            }
         }
     });
 }

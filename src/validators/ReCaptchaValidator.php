@@ -59,13 +59,11 @@ class ReCaptchaValidator extends Validator
      * @throws Exception
      */
     protected function validateValue($value) {
-        var_dump($value);die();
         $isValid = false;
         if (is_null($value) || empty($value)) {
             $isValid = false;
         } else {
             $response = $this->verifyCaptcha($value);
-            var_dump($response);die();
             if (!isset($response['success']) && isset($response['hostname'])) {
                 if ($this->checkHost && $response['hostname'] !== Yii::$app->request->hostName) {
                     throw new Exception('Invalid reCaptcha verify response.');
@@ -74,6 +72,7 @@ class ReCaptchaValidator extends Validator
 
             if ($response['success'] === true)
                 $isValid = true;
+
         }
 
         // Flip the value where `null` should mean no validation errors
