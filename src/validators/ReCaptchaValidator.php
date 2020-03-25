@@ -6,7 +6,7 @@ namespace wdmg\validators;
  * Yii2 ReCaptcha
  *
  * @category        Validators
- * @version         1.0.1
+ * @version         1.0.2
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-recaptcha
  * @copyright       Copyright (c) 2019 - 2020 W.D.M.Group, Ukraine

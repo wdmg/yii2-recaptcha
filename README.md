@@ -1,4 +1,4 @@
-[![Progress](https://img.shields.io/badge/required-Yii2_v2.0.13-blue.svg)](https://packagist.org/packages/yiisoft/yii2) 
+[![Progress](https://img.shields.io/badge/required-Yii2_v2.0.33-blue.svg)](https://packagist.org/packages/yiisoft/yii2) 
 [![Github all releases](https://img.shields.io/github/downloads/wdmg/yii2-recaptcha/total.svg)](https://GitHub.com/wdmg/yii2-recaptcha/releases/)
 [![GitHub version](https://badge.fury.io/gh/wdmg/yii2-recaptcha.svg)](https://github.com/wdmg/yii2-recaptcha)
 ![Progress](https://img.shields.io/badge/progress-in_development-red.svg)
@@ -9,7 +9,7 @@ Google ReCaptcha widget for Yii2
 
 # Requirements 
 * PHP 5.6 or higher
-* Yii2 v.2.0.20 and newest
+* Yii2 v.2.0.33 and newest
 * jQuery
 
 # Installation
@@ -90,5 +90,6 @@ Currently, the widget and validator polls the following parameters: `recaptcha.s
 > This widget supports Google reCaptcha v2 in a normal and invisible way. Support for v3 is planned.
 
 # Status and version
+* v.1.0.2 - Up to date dependencies
 * v.1.0.1 - Added support for `siteKey`, `apiURL`, `secretKey`, `verifyURL` from application params.
 * v.1.0.0 - First release. Added widget and validator.
