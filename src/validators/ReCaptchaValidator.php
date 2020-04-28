@@ -20,7 +20,6 @@ use yii\base\InvalidConfigException;
 use yii\validators\Validator;
 use yii\httpclient\Client;
 
-
 class ReCaptchaValidator extends Validator
 {
 
